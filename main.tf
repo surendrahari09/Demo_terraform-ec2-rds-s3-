@@ -35,3 +35,12 @@ resource "aws_db_instance" "default" {
   db_subnet_group_name = var.db_subnet_group_name
   skip_final_snapshot    = var.skip_final_snapshot
 }
+resource "aws_dynamodb_table" "state_locking" {
+  hash_key = "LockID"
+  name     = "dynamodb-lock"
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+  billing_mode = "PAY_PER_REQUEST"
+}
