@@ -2,8 +2,9 @@ resource "aws_instance" "my-machine" {
   ami = var.ami
   instance_type = var.instance_type
   subnet_id     = " subnet-06de6c089b7d56a9b "
+   key_name = var.key_name
   tags = {
-    Name = "my-ec2-machine"
+    Name = "my-Ec2-Instance"
   }
 }
 
@@ -21,17 +22,12 @@ resource "aws_s3_bucket" "tfbucket" {
 
 
 resource "aws_db_instance" "default" {
-# Allocating the storage for database instance.
   allocated_storage    = 10
-# Declaring the database engine and engine_version
   engine               = var.engine
   engine_version       = var.engine_version
-# Declaring the instance class
   instance_class       = var.instance_class
-# User to connect the database instance
   username             = var.username
  password		= var.password
-# Password to connect the database instance
   db_subnet_group_name = var.db_subnet_group_name
   skip_final_snapshot    = var.skip_final_snapshot
 }
